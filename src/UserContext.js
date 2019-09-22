@@ -7,8 +7,6 @@ export default function UserProvider(props) {
     setSidebarOpen(true);
   };
   const handleCloseSidebar = () => {
-    console.log("hello");
-
     setSidebarOpen(false);
   };
   return (

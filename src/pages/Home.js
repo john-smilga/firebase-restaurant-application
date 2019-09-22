@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   useEffect(() => {
-    firestore
+    let unsubscribe = firestore
       .collection("restaurants")
-      .get()
-      .then(data => {
-        const restaurants = data.docs.map(item => {
+      .onSnapshot(snapshot => {
+        const restaurants = snapshot.docs.map(item => {
           return { id: item.id, ...item.data() };
         });
         setRestaurants(restaurants);
-      })
-      .catch(error => console.log(error));
+      });
+    // console.log(unsubscribe);
+    return () => {
+      unsubscribe();
+    };
   }, []);
   const addStar = (id, oldStars) => {
     // const singleRef = firestore.doc(`restaurants/${id}`);

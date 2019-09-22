@@ -41,4 +41,20 @@ await firestore
       .doc(`restaurants/${id}`)
       .delete()
       .catch(error => console.log(error));
+// subscribe to changes and cleanup
+useEffect(() => {
+    let unsubscribe = firestore
+      .collection("restaurants")
+      .onSnapshot(snapshot => {
+        const restaurants = snapshot.docs.map(item => {
+          return { id: item.id, ...item.data() };
+        });
+        setRestaurants(restaurants);
+      });
+    // console.log(unsubscribe);
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
 ```
