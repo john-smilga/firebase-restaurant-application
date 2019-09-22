@@ -1,22 +1,66 @@
-.App {
-  text-align: center;
+:root {
+  --primaryColor: #28c5da;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainTransition: all 0.3s ease-in-out;
 }
-
-.App-logo {
-  height: 40vmin;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--mainWhite);
+  color: var(--mainBlack);
+}
+/* ================= global ========== */
+.temp-restaurant {
+  margin: 3rem;
+}
+.temp-restaurant button {
+  margin: 1rem;
+}
+/* ================= end of global ========== */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ================= navbar ========== */
+.nav-links {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+  .nav-toggle {
+    display: none;
+  }
+  .nav-link {
+    margin: 0 0.2rem;
+  }
+}
+.nav-center {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
 }
 
-.App-link {
-  color: #09d3ac;
+/* ================= end of navbar ========== */
+/* ================= sidebar ========== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: grey;
+  z-index: 1;
+  opacity: 1;
+  transition: var(--mainTransition);
 }
+.sidebar-close {
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 0;
+}
+/* ================= end of sidebar ========== */
