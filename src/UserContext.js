@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 const UserContext = React.createContext();
 export default function UserProvider(props) {
-  const user = "john";
+  const user = null;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const handleOpenSidebar = () => {
     setSidebarOpen(true);

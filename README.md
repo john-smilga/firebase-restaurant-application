@@ -22,4 +22,23 @@ firestore.collection("restaurants").get();
 // snapshot
 // docs property - collection array
 // data() method - returns all properties of document
+
+// get document reference
+const singleRef = firestore.doc(`restaurants/${id}`);
+
+// get single document/returns a promise - grab all properties using data method.
+singleRef.get().then(snapshot => {....snapshot.data()})
+
+// two ways of getting document refernce
+firestore.doc(`restaurants/${id}`);
+firestore.collection("restaurants").doc(id)
+
+//update document
+ firestore.collection("restaurants").doc(id).update({ stars: stars + 1 });
+
+//delete/remove document
+await firestore
+      .doc(`restaurants/${id}`)
+      .delete()
+      .catch(error => console.log(error));
 ```

@@ -15,6 +15,22 @@ const Home = () => {
       })
       .catch(error => console.log(error));
   }, []);
+  const addStar = (id, oldStars) => {
+    // const singleRef = firestore.doc(`restaurants/${id}`);
+    // singleRef
+    //   .update({ stars: oldStars + 1 })
+    //   .catch(error => console.log(error));
+    firestore
+      .collection("restaurants")
+      .doc(id)
+      .update({ stars: oldStars + 1 });
+  };
+  const removeRestaurant = async id => {
+    await firestore
+      .doc(`restaurants/${id}`)
+      .delete()
+      .catch(error => console.log(error));
+  };
   return (
     <div>
       {restaurants.map(item => {
@@ -26,8 +42,12 @@ const Home = () => {
             <p>{content}</p>
             <p>stars:{stars}</p>
             <div>
-              <button type="button">delete restaurant</button>
-              <button type="button">add start</button>
+              <button type="button" onClick={() => removeRestaurant(id)}>
+                delete restaurant
+              </button>
+              <button type="button" onClick={() => addStar(id, stars)}>
+                add star
+              </button>
             </div>
             <Link to={`/restaurants/${id}`}>more info</Link>
           </div>
