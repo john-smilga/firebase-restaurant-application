@@ -56,5 +56,21 @@ useEffect(() => {
       unsubscribe();
     };
   }, []);
+// add new item/restaurant
+await firestore
+      .collection("restaurants")
+      .add(restaurant)
+      .catch(error => console.log(error));
 
+```
+
+## Authentication
+
+```js
+import "firebase/auth";
+// setup authentication
+export const auth = firebase.auth();
+export const provider = new firebase.auth.GoogleAuthProvider();
+export const googleSignIn = auth.signInWithPopup(provider);
+export const singOut = () => auth.signOut();
 ```
