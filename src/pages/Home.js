@@ -12,7 +12,6 @@ const Home = () => {
         });
         setRestaurants(restaurants);
       });
-    // console.log(unsubscribe);
     return () => {
       unsubscribe();
     };
